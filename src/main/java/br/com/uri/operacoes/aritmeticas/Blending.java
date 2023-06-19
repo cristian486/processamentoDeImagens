@@ -1,8 +1,10 @@
-package br.com.uri.operacoes;
+package br.com.uri.operacoes.aritmeticas;
+
+import br.com.uri.operacoes.Normalizar;
+import br.com.uri.operacoes.Operacao;
+import br.com.uri.utils.EntradaValorNumerico;
 
 import java.awt.image.BufferedImage;
-import java.util.Locale;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Blending implements Operacao {
@@ -10,7 +12,7 @@ public class Blending implements Operacao {
     public BufferedImage executar(BufferedImage primeiraImagem, BufferedImage segundaImagem) {
         BufferedImage imagemResultante = new BufferedImage(primeiraImagem.getWidth(), primeiraImagem.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
 
-        double alpha = this.informarAlpha(new Scanner(System.in).useLocale(Locale.US));
+        double alpha = EntradaValorNumerico.obterValorFlutuante("Informe um valor entre 0.0 e 1.0 para o alfa: ", 0d, 1d);
 
         IntStream.range(0, primeiraImagem.getWidth()).forEach(linha -> {
             IntStream.range(0, primeiraImagem.getHeight()).forEach(coluna -> {
@@ -39,13 +41,4 @@ public class Blending implements Operacao {
         return imagemResultante;
     }
 
-    private double informarAlpha(Scanner scanner) {
-
-        System.out.println("Informe um valor entre 0.0 e 1.0 para o alfa: ");
-        Double alpha = scanner.nextDouble();
-
-        if(alpha < 0.0 || alpha > 1.0) this.informarAlpha(scanner);
-
-        return alpha;
-    }
 }

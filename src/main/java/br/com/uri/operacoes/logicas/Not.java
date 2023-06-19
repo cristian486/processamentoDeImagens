@@ -1,4 +1,7 @@
-package br.com.uri.operacoes;
+package br.com.uri.operacoes.logicas;
+
+import br.com.uri.operacoes.Normalizar;
+import br.com.uri.operacoes.Operacao;
 
 import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
